@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KEY BARU — 『𝑻𝑰𝑻𝑰𝑲 ☯ 𝑻𝑬𝑴𝑮』</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family: monospace; }
+  body { background: linear-gradient(160deg,#0a0a14 0%,#12122a 60%,#1a1035 100%); color:#e8e8ff; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:16px; }
+  .box { width:100%; max-width:430px; background:#14142b; border:2px solid #3a3a7a; border-radius:16px; padding:24px 20px; box-shadow:0 0 40px rgba(90,60,255,.25); text-align:center; }
+  .brand { font-size:19px; font-weight:bold; letter-spacing:1px; background: linear-gradient(90deg,#ffd76a,#ff8a5c,#b34cff,#7a5cff,#ffd76a); background-size:300% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation: g 4s linear infinite; }
+  @keyframes g { to { background-position:300% 0; } }
+  h2 { color:#7dff9a; font-size:15px; margin:12px 0 4px; }
+  .who { font-size:11px; color:#8888bb; }
+  .key { background:#0e0e20; border:2px dashed #7a5cff; border-radius:10px; padding:16px 10px; margin:14px 0; font-size:19px; letter-spacing:2px; color:#ffd76a; font-weight:bold; word-break:break-all; user-select:all; }
+  button { width:100%; padding:13px; border:none; border-radius:10px; background:linear-gradient(90deg,#7a5cff,#b34cff); color:#fff; font-size:14px; font-weight:bold; letter-spacing:1px; cursor:pointer; }
+  .ok { color:#7dff9a; font-size:12px; min-height:16px; margin-top:8px; }
+  .info { font-size:11px; color:#8888bb; margin-top:12px; line-height:1.7; text-align:left; }
+  .info b { color:#cfcfff; }
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="brand">『𝑻𝑰𝑻𝑰𝑲 ☯ 𝑻𝑬𝑴𝑮』</div>
+  <h2>✅ KEY BARU BERHASIL DIBUAT</h2>
+  <div class="who" id="who"></div>
+  <div class="key" id="k">MEMUAT...</div>
+  <button onclick="salin()">📋 SALIN KEY</button>
+  <div class="ok" id="ok"></div>
+  <div class="info">
+    📱 <b>CARA PAKAI</b> (SC lama lu tetep jalan):<br>
+    1. Buka SC di GameGuardian<br>
+    2. Menu <b>LOGIN KEY</b> → ketik key di atas<br>
+    3. Selesai — jatah lu langsung aktif lagi<br><br>
+    ⚠️ <b>TULIS/CATET KEY INI!</b> Kalau ilang, ambil lagi di web (pakek kuota unduh device lu).
+  </div>
+</div>
+<script>
+  var p = new URLSearchParams(location.search);
+  var key = (p.get("key") || "").trim();
+  var nama = (p.get("nama") || "").trim();
+  document.getElementById("who").textContent = nama ? ("👤 " + nama + " • 🎁 5 login segar di key ini") : "🎁 5 login segar di key ini";
+  document.getElementById("k").textContent = key || "KEY GAK KEBACA — ambil lagi dari web ya";
+  function salin() {
+    var t = document.getElementById("k").textContent.trim();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(t).then(function () { document.getElementById("ok").textContent = "✅ Key kecopy! Tinggal tempel di SC"; }, fb);
+    } else { fb(); }
+    function fb() {
+      var a = document.createElement("textarea"); a.value = t; document.body.appendChild(a); a.select();
+      try { document.execCommand("copy"); document.getElementById("ok").textContent = "✅ Key kecopy! Tinggal tempel di SC"; } catch (e) {}
+      document.body.removeChild(a);
+    }
+  }
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a49f9052fe75a396',t:'MTc5MTkwNzI5NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
