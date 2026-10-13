@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>『𝑻𝑰𝑻𝑰𝑲 ☯ 𝑻𝑬𝑴𝑼』 — SC STREET FREE</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family: monospace; }
+  body {
+    background: linear-gradient(160deg,#0a0a14 0%,#12122a 60%,#1a1035 100%);
+    color:#e8e8ff; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:16px;
+  }
+  .box {
+    width:100%; max-width:430px; background:#14142b; border:2px solid #3a3a7a;
+    border-radius:16px; padding:24px 22px; box-shadow:0 0 40px rgba(90,60,255,.25);
+  }
+  .banner { text-align:center; font-size:13px; line-height:1.6; color:#cfcfff; white-space:pre; }
+  .banner b { color:#ffd76a; }
+  h2 { text-align:center; color:#ffd76a; font-size:15px; margin:14px 0 4px; letter-spacing:1px; }
+  .sub { text-align:center; font-size:11px; color:#8888bb; margin-bottom:16px; }
+  label { font-size:12px; color:#a0a0d0; display:block; margin:10px 0 4px; }
+  input {
+    width:100%; padding:12px; border-radius:8px; border:1px solid #44448c;
+    background:#0e0e20; color:#fff; font-size:14px; outline:none;
+  }
+  input:focus { border-color:#7a5cff; }
+  button {
+    width:100%; margin-top:16px; padding:14px; border:none; border-radius:10px;
+    background:linear-gradient(90deg,#7a5cff,#b34cff); color:#fff; font-size:15px;
+    font-weight:bold; letter-spacing:1px; cursor:pointer;
+  }
+  button:disabled { opacity:.5; cursor:wait; }
+  .note { font-size:10.5px; color:#7777aa; margin-top:14px; line-height:1.6; }
+  .status { margin-top:12px; font-size:12px; color:#ffd76a; text-align:center; min-height:16px; }
+  .err { color:#ff6a8a; }
+  .badge { display:inline-block; background:#262650; border:1px solid #4a4a90; border-radius:6px; padding:2px 8px; font-size:10px; color:#9a9aff; margin:2px; }
+  .brand {
+    text-align:center; font-size:22px; font-weight:bold; letter-spacing:1px;
+    background: linear-gradient(90deg,#ffd76a,#ff8a5c,#b34cff,#7a5cff,#ffd76a);
+    background-size: 300% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: geser 4s linear infinite;
+    filter: drop-shadow(0 0 12px rgba(179,76,255,.45));
+    margin-bottom:2px;
+  }
+  @keyframes geser { to { background-position: 300% 0; } }
+  .garis {
+    height:2px; border-radius:2px; margin:6px 0 10px;
+    background: linear-gradient(90deg, transparent, #ffd76a, #b34cff, transparent);
+    background-size: 200% 100%;
+    animation: kilat 2.2s ease-in-out infinite;
+  }
+  @keyframes kilat { 0%,100% { opacity:.3; } 50% { opacity:1; } }
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="brand">『𝑻𝑰𝑻𝑰𝑲 ☯ 𝑻𝑬𝑴𝑼』</div>
+  <div class="garis"></div>
+  <h2>🆓 UNDUH SC STREET — FREE EDITION</h2>
+  <div class="sub">🎁 FULL FEATURE • KEY LANGSUNG DAPAT SAAT UNDUH</div>
+
+  <label>👤 Nama lu (buat dicatet di sistem):</label>
+  <input type="text" id="nama" maxlength="25" placeholder="contoh: Wak Botak">
+
+  <button id="btn" onclick="mulai()">🚀 UNDUH SCRIPT + KEY</button>
+  <button id="btnkey" onclick="mulai('key')" style="background:linear-gradient(90deg,#2a7a5c,#7a5cff);font-size:13px;">🔑 PUNYA SC? AMBIL KEY BARU SAJA</button>
+  <div class="status" id="status"></div>
+
+  <div class="note">
+    ✅ 100% GRATIS tanpa login ribet — key lu dikirim otomatis bareng file.<br>
+    🔑 Udah punya SC? <b>AMBIL KEY BARU SAJA</b> — gak perlu unduh ulang, key langsung muncul di layar.<br>
+    📱 Support semua HP & emulator dengan GameGuardian.<br>
+    ⭐ Jangan lupa subscribe channel <b>『𝑻𝑰𝑻𝑰𝑲 ☯ 𝑻𝑬𝑴𝑼』</b> buat update SC terbaru!
+  </div>
+</div>
+
+<script>
+// ====== KONFIG (GANTI 1 BARIS INI DENGAN URL function cari_duit LU) ======
+const URL_CARI_DUIT = "https://nqlkvruluzzyxhaemyjg.supabase.co/functions/v1/cari_duit";
+
+// ====== DEVICE ID (pengganti android_id: unik per browser, awet) ======
+function ambilDeviceId() {
+  let id = localStorage.getItem("tt_device_id");
+  if (!id) {
+    const raw = (crypto.randomUUID ? crypto.randomUUID() : Date.now() + "-" + Math.random()) + "|" + navigator.userAgent;
+    // hash sederhana biar pendek & rapi
+    let h1 = 5381, h2 = 2166136261;
+    for (let i = 0; i < raw.length; i++) {
+      const c = raw.charCodeAt(i);
+      h1 = (h1 * 33 + c) >>> 0;
+      h2 = (h2 * 16777619 + c) >>> 0;
+    }
+    id = "web" + h1.toString(16) + h2.toString(16);
+    localStorage.setItem("tt_device_id", id);
+  }
+  return id;
+}
+
+// ====== TOMBOL UNDUH (mode: undefined = SC+KEY, "key" = KEY ONLY) ======
+let modeDipilih = "";
+async function mulai(mode) {
+  modeDipilih = (mode === "key") ? "key" : "";
+  const btn = document.getElementById("btn");
+  const btnKey = document.getElementById("btnkey");
+  const aktif = modeDipilih === "key" ? btnKey : btn;
+  const lain = modeDipilih === "key" ? btn : btnKey;
+  const st = document.getElementById("status");
+  const nama = document.getElementById("nama").value.trim();
+
+  if (!nama) { st.textContent = "❌ Isi nama dulu wak!"; st.className = "status err"; return; }
+
+  aktif.disabled = true; lain.disabled = true;
+  st.className = "status";
+  st.textContent = modeDipilih === "key" ? "⏳ Nyiapin link key baru..." : "⏳ Nyiapin link unduhan...";
+
+  try {
+    const r = await fetch(URL_CARI_DUIT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ hwid: ambilDeviceId(), nama: nama, mode: modeDipilih })
+    });
+    const data = await r.json();
+
+    if (!r.ok || !data.link) {
+      st.className = "status err";
+      st.textContent = data.error || "⚠️ Gagal nyiapin link - coba lagi.";
+      aktif.disabled = false; lain.disabled = false;
+      return;
+    }
+
+    localStorage.setItem("tt_nama", nama);
+    st.className = "status";
+    st.textContent = modeDipilih === "key"
+      ? "✅ Link siap! 1x liat sponsor → key baru muncul 🚀"
+      : "✅ Link siap! Pembukaan: 1x liat sponsor, langsung file turun 🚀";
+    aktif.textContent = "▶️ LANJUT KE HALAMAN BERIKUTNYA";
+    aktif.disabled = false; lain.disabled = false;
+    // langkah 1: buka shortlink (iklan). unduh_sc nyiapin marka tiket waktu link disiapkan
+    aktif.onclick = () => { window.location.href = data.link; };
+  } catch (e) {
+    st.className = "status err";
+    st.textContent = "⚠️ Koneksi bermasalah - cek internet lalu coba lagi.";
+    aktif.disabled = false; lain.disabled = false;
+  }
+}
+
+// auto-isi nama yang kemarin dipakek
+window.onload = () => {
+  const n = localStorage.getItem("tt_nama");
+  if (n) document.getElementById("nama").value = n;
+};
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a49f5a956b8a4ac7',t:'MTc5MTkwNTA5Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
